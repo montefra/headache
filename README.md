@@ -42,3 +42,14 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Database interactions
+
+The persistency layer is handled by [prisma](https://www.prisma.io/docs).
+Use PostgreSQL 17 as DB.
+
+Initialize prisma (it shouldn't be necessary to do this anymore):
+    
+    npx prisma init --datasource-provider postgresql --output generated/prisma
+
+Adapt `DATABASE_URL` in the `.env` file with the correct connection string. For local development the credential should match the ones in `docker/docker-compose.yaml`.
