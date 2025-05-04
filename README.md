@@ -2,7 +2,15 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-First, run the development server:
+First create or start the database:
+
+    docker compose --project-directory docker up -d
+
+If the image already exists
+
+    docker compose --project-directory docker start
+
+Then run the development server:
 
 ```bash
 npm run dev
