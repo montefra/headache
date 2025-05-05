@@ -53,3 +53,17 @@ Initialize prisma (it shouldn't be necessary to do this anymore):
     npx prisma init --datasource-provider postgresql --output generated/prisma
 
 Adapt `DATABASE_URL` in the `.env` file with the correct connection string. For local development the credential should match the ones in `docker/docker-compose.yaml`.
+
+When the `schema.prisma` is modified, run
+
+    npx prisma generate
+
+to generate the javascript and typescript code from the schema file.
+
+## Migrations
+
+To create and apply migrations to the dev database use
+
+    npx prisma migrate dev
+
+    

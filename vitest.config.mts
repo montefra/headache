@@ -8,9 +8,10 @@ export default defineConfig({
     environment: "jsdom",
     coverage: {
       provider: "v8",
-      exclude: ["node_modules", "test", "**/*.test.*"],
+      exclude: ["node_modules", "test", "**/*.test.*", "src/generated/**"],
       include: ["src"],
       reporter: ["text", "html", "json"],
     }
   },
+  logLevel: 'error',
 });
