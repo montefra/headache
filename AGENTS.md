@@ -19,11 +19,14 @@ npm run build
 # Start production server
 npm run start
 
-# Run tests
+# Run tests (watch mode)
 npm run test
 
-# Run tests with coverage
+# Run tests once (recommended for CI/automated runs)
 npm run coverage
+
+# Run tests without coverage
+npx vitest run
 
 # Run linter
 npm run lint
@@ -50,13 +53,13 @@ npx prisma migrate reset
 ### Testing Individual Files
 ```bash
 # Run specific test file
-npx vitest path/to/test.test.ts
+npx vitest run path/to/test.test.ts
 
 # Run in watch mode
-npx vitest --watch
+npx vitest --watch path/to/test.test.ts
 
 # Run with coverage for specific file
-npx vitest --coverage path/to/test.test.ts
+npx vitest run --coverage path/to/test.test.ts
 ```
 
 ## Architecture Guidelines
