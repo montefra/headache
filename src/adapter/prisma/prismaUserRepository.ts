@@ -2,7 +2,9 @@ import { UserRepository } from '@headache/domain/repositories/userRepository';
 import { User } from '@headache/domain/models/user';
 import { prisma } from './client';
 import { UserNotFoundError } from '@headache/domain/errors';
+import { injectable } from 'tsyringe';
 
+@injectable()
 export class PrismaUserRepository implements UserRepository {
     constructor() {
     }

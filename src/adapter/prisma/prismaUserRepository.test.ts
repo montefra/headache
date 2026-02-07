@@ -4,10 +4,17 @@ import { prisma } from "./client";
 import { User } from "@headache/generated/prisma";
 import { UserNotFoundError } from "@headache/domain/errors";
 
+// Mock tsyringe to avoid reflect-metadata dependency in unit tests
+vi.mock("tsyringe", () => ({
+  injectable: () => (target: new (...args: unknown[]) => unknown) => target, // No-op decorator for unit tests
+}));
+
 vi.mock("./client", () => ({
   prisma: {
     user: {
       create: vi.fn(),
+      findUnique: vi.fn(),
+      findMany: vi.fn(),
     },
   },
 }));
