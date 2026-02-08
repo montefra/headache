@@ -1,3 +1,5 @@
+import BackToHomepage from "@headache/components/ui/BackToHomepage";
+
 export default async function UserPage({
   params,
 }: {
@@ -5,8 +7,10 @@ export default async function UserPage({
 }) {
   const { username } = await params;
 
-  return <div>
-    <h1>Hi {username}</h1>
-
+  return <div className="relative">
+    <BackToHomepage />
+    <div className="flex flex-col items-center justify-center min-h-screen">
+      <h1>Hi {username}</h1>
+    </div>
     </div>;
 }
