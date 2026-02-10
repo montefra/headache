@@ -32,6 +32,18 @@ npx vitest run
 npm run lint
 ```
 
+### Renovate Commands
+```bash
+# Manually trigger Renovate workflow
+gh workflow run renovate.yaml
+
+# Check Renovate configuration
+npx renovate-config-validator
+
+# Run Renovate locally (for testing)
+npx renovate --dry-run
+```
+
 ### Database Commands
 ```bash
 # Start PostgreSQL container
