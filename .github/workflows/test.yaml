@@ -11,6 +11,8 @@ on:
 
 permissions:
     contents: read
+    checks: write
+    pull-requests: write
 
 env:
     NODE_VERSION: 22
@@ -30,7 +32,12 @@ jobs:
             - run: npm ci
               name: "Install dependencies"
             - run: npm run coverage
-              name: "Run tests"
+              name: "Run tests with coverage"
+            - name: "Upload coverage to GitHub"
+              uses: davelosert/vitest-coverage-report-action@v2
+              with:
+                  json-summary-path: ./coverage/coverage-summary.json
+                  threshold-icons: "{0: '🔴', 80: '🟠', 90: '🟢'}"
             - run: npm run lint
               name: "Lint code"
 
