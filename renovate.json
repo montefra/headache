@@ -1,7 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:base",
+    "config:recommended",
     ":dependencyDashboard",
     ":semanticCommits",
     ":automergeDigest",
@@ -10,6 +10,9 @@
   ],
   "timezone": "UTC",
     "schedule": ["before 6am on friday"],
+  "repositories": [
+    "montefra/headache"
+  ],
   "dependencyDashboard": true,
   "dependencyDashboardTitle": "Renovate Dependency Dashboard",
   "dependencyDashboardLabels": ["dependencies"],
@@ -20,24 +23,24 @@
   "labels": ["dependencies"],
   "assignees": ["@dependabot"],
   "updateNotScheduled": false,
-  "automerge": true,
+  "automerge": false,
   "automergeType": "pr",
   "automergeComment": "automergePR",
-  "platformAutomerge": true,
+  "platformAutomerge": false,
   "lockFileMaintenance": {
     "enabled": true,
   "schedule": ["before 6am on friday"],
-    "automerge": true
+    "automerge": false
   },
   "packageRules": [
     {
       "matchUpdateTypes": ["minor", "patch"],
       "matchCurrentVersion": "!/^0/",
-      "automerge": true
+      "automerge": false
     },
     {
       "matchDepTypes": ["devDependencies"],
-      "automerge": true
+      "automerge": false
     },
     {
       "matchPackageNames": ["@prisma/client", "prisma"],
@@ -55,6 +58,6 @@
   "vulnerabilityAlerts": {
     "labels": ["security", "dependencies"],
     "assignees": ["@dependabot"],
-    "automerge": true
+    "automerge": false
   }
 }
