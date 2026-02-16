@@ -38,7 +38,7 @@
     "jsdom": "^26.1.0",
     "prisma": "^6.7.0",
     "tailwindcss": "^4",
-    "tsx": "^4.19.4",
+    "tsx": "^4.21.0",
     "typescript": "^5",
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^3.2.4"
