@@ -9,7 +9,7 @@
     "schedule:weekly"
   ],
   "timezone": "UTC",
-    "schedule": ["before 6am on friday"],
+  "schedule": ["before 6am on friday"],
   "repositories": [
     "montefra/headache"
   ],
@@ -29,7 +29,7 @@
   "platformAutomerge": false,
   "lockFileMaintenance": {
     "enabled": true,
-  "schedule": ["before 6am on friday"],
+    "schedule": ["before 6am on friday"],
     "automerge": false
   },
   "packageRules": [
