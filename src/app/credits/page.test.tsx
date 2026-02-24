@@ -1,9 +1,10 @@
 import { describe, expect, test, afterEach, vi } from "vitest";
 import { render, screen, cleanup } from "@testing-library/react";
+import Link from "next/link";
 import Credits from "./page";
 
 vi.mock("@headache/components/ui/BackToHomepage", () => ({
-  default: () => <a href="/">Back to Homepage</a>,
+  default: () => <Link href="/">Back to Homepage</Link>,
 }));
 
 describe("Credits Page", () => {
