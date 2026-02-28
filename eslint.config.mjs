@@ -11,7 +11,7 @@ const compat = new FlatCompat({
 
 const eslintConfig = [
   {
-    ignores: ["src/generated/**"], // Exclude generated files from linting
+    ignores: ["src/generated/**", ".next/**", "coverage/**", "next-env.d.ts"],
   },
   ...compat.extends("next/core-web-vitals", "next/typescript", "prettier"),
 ];
