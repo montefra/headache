@@ -10,47 +10,49 @@ on:
       - main
 
 permissions:
-    contents: read
-    checks: write
-    pull-requests: write
+  contents: read
+  checks: write
+  pull-requests: write
 
 env:
-    NODE_VERSION: 22
-    DATABASE_URL: "postgresql://local-user:local-password@localhost:5442/headache?schema=headache"
+  NODE_VERSION: 22
+  DATABASE_URL: "postgresql://local-user:local-password@localhost:5442/headache?schema=headache"
 
 jobs:
-    test:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v4
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
 
-            - uses: actions/setup-node@v4
-              name: "Setup Node.js ${{ env.NODE_VERSION }}"
-              with:
-                  node-version: "${{ env.NODE_VERSION }}"
-                  cache: "npm"
+      - uses: pnpm/action-setup@v4
+        name: "Install pnpm"
 
-            - run: npm ci
-              name: "Install dependencies"
-            - name: "Start PostgreSQL"
-              run: docker compose -f docker/docker-compose.yaml up -d
-            - name: "Generate Prisma client"
-              run: npx prisma generate
-            - name: "Run database migrations"
-              run: npx prisma migrate dev
-            - name: "Seed database"
-              run: npx prisma db seed
-            - name: "Install Playwright browsers"
-              run: npx playwright install --with-deps
-            - run: npm run coverage
-              name: "Run tests with coverage"
-            - run: npm run e2e
-              name: "Run E2E tests"
-            - name: "Upload coverage to GitHub"
-              uses: davelosert/vitest-coverage-report-action@v2
-              with:
-                  json-summary-path: ./coverage/coverage-summary.json
-                  threshold-icons: "{0: '🔴', 80: '🟠', 90: '🟢'}"
-            - run: npm run lint
-              name: "Lint code"
+      - uses: actions/setup-node@v6
+        name: "Setup Node.js ${{ env.NODE_VERSION }}"
+        with:
+          node-version: "${{ env.NODE_VERSION }}"
+          cache: "pnpm"
 
+      - run: pnpm install --frozen-lockfile
+        name: "Install dependencies"
+      - name: "Start PostgreSQL"
+        run: docker compose -f docker/docker-compose.yaml up -d
+      - name: "Generate Prisma client"
+        run: pnpm exec prisma generate
+      - name: "Run database migrations"
+        run: pnpm exec prisma migrate dev
+      - name: "Seed database"
+        run: pnpm exec prisma db seed
+      - name: "Install Playwright browsers"
+        run: pnpm exec playwright install --with-deps
+      - run: pnpm run coverage
+        name: "Run tests with coverage"
+      - run: pnpm run e2e
+        name: "Run E2E tests"
+      - name: "Upload coverage to GitHub"
+        uses: davelosert/vitest-coverage-report-action@v2
+        with:
+          json-summary-path: ./coverage/coverage-summary.json
+          threshold-icons: "{0: '🔴', 80: '🟠', 90: '🟢'}"
+      - run: pnpm run lint
+        name: "Lint code"
